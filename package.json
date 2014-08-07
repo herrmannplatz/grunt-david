@@ -1,0 +1,27 @@
+{
+  "name": "grunt-david",
+  "version": "0.0.1",
+  "description": "Check npm dependencies",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/herrmannplatz/grunt-david.git"
+  },
+  "keywords": [
+    "grunt",
+    "david",
+    "npm",
+    "dependencies"
+  ],
+  "author": "René Herrmann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/herrmannplatz/grunt-david/issues"
+  },
+  "homepage": "https://github.com/herrmannplatz/grunt-david",
+  "dependencies": {
+    "david": "^3.3.1"
+  }
+}
