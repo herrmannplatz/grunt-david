@@ -25,6 +25,6 @@ grunt.loadNpmTasks('grunt-david');
 ## David task
 _Run this task with the `grunt david` command._
 
-Watching and update your node.js dependencies automatically.
+Keep you npm modules up to date.
 ### Options
 
