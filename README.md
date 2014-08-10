@@ -25,6 +25,40 @@ grunt.loadNpmTasks('grunt-david');
 ## David task
 _Run this task with the `grunt david` command._
 
-Keep you npm modules up to date.
+Keep your node.js dependencies up to date.
 ### Options
 
+#### update
+Type: `Boolean`
+Default: `false`
+
+Turn on if you want to update all your project dependencies to the latest stable versions.
+
+#### unstable
+Type: `Boolean`
+Default: `false`
+
+Turn on if you want to update all your project dependencies to the latest versions (including unstable versions)
+
+#### registry
+Type: `String`
+Default: `undefined`
+
+Use an alternate registry
+
+### Usage examples
+
+#### Update dependencies
+
+```js
+// Project configuration.
+grunt.initConfig({
+  david: {
+    all: {
+      options: {
+        update: true
+      }
+    }
+  }
+});
+```
