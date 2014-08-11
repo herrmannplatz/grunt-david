@@ -38,10 +38,10 @@ module.exports = function(grunt) {
 
     var exec = require('child_process').exec;
     exec(path+command, function(error, stdout, stderr) {
-      console.log(stdout);
-      console.log(stderr);
+      grunt.log.writeln(stdout);
+      grunt.log.writeln(stderr);
       if (error !== null) {
-        grunt.fail.warn('error while checking dependencies: ' + error);
+        grunt.log.error('error while checking dependencies: ' + error);
       }
       done();
     });
