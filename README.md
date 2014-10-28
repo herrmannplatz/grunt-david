@@ -46,6 +46,12 @@ Default: `undefined`
 
 Use an alternate registry
 
+#### warn404
+Type: `Boolean`
+Default: `false`
+
+Turn on if you want David not to abort if any errors are found. Error messages are then included in the report.
+
 ### Usage examples
 
 #### Update dependencies

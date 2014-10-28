@@ -12,7 +12,8 @@ module.exports = function(grunt) {
     var options = this.options({
       update: false,
       unstable: false,
-      registry: null
+      registry: null,
+      warn404: false
     });
 
     var path = __dirname + '/../node_modules/.bin/';
@@ -31,6 +32,11 @@ module.exports = function(grunt) {
     // Use an alternate registry
     if(isString(options.registry)) {
       command += ' --registry ' + options.registry;
+    }
+
+    // Do not abort if errors are found (print errors instead)
+    if(options.warn404 === true) {
+      command += ' --warn404';
     }
 
     // Log david command
