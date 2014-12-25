@@ -1,3 +1,5 @@
+[![Dependency Status](https://david-dm.org/herrmannplatz/grunt-david.svg)](https://david-dm.org/herrmannplatz/grunt-david)
+
 # grunt-david
 
 > Watching your node.js dependencies.
