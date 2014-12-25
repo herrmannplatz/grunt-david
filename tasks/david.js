@@ -13,7 +13,8 @@ module.exports = function(grunt) {
       update: false,
       unstable: false,
       registry: null,
-      warn404: false
+      error404: false,
+      errorSCM: false
     });
 
     var path = __dirname + '/../node_modules/.bin/';
@@ -34,9 +35,14 @@ module.exports = function(grunt) {
       command += ' --registry ' + options.registry;
     }
 
-    // Do not abort if errors are found (print errors instead)
-    if(options.warn404 === true) {
-      command += ' --warn404';
+    // Throw an error and exit, if you have dependencies that are not published to npm
+    if(options.error404 === true) {
+      command += ' --error404';
+    }
+
+    // Throw an error and exit, if you have dependencies whose versions are SCM URLs
+    if(options.errorSCM === true) {
+      command += ' --errorSCM';
     }
 
     // Log david command
