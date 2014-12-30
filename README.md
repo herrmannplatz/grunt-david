@@ -48,11 +48,17 @@ Default: `undefined`
 
 Use an alternate registry
 
-#### warn404
+#### error404
 Type: `Boolean`
 Default: `false`
 
-Turn on if you want David not to abort if any errors are found. Error messages are then included in the report.
+Turn on to abort if David finds any dependencies that are not published to npm. Error messages are then included in the report.
+
+#### errorSCM
+Type: `Boolean`
+Default: `false`
+
+Turn on to abort if David finds any dependencies that are SCM URLs. Error messages are then included in the report.
 
 ### Usage examples
 
