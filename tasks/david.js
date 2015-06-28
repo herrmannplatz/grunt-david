@@ -19,41 +19,44 @@ module.exports = function(grunt) {
 
     var path = __dirname + '/../node_modules/.bin/';
     var command = 'david';
+    var flags = [];
 
     // Update all your project dependencies to the latest stable versions
     if(options.update === true) {
-      command += ' --update';
+      flags.push('--update');
     }
 
     // Update all your project dependencies to the latest versions (including unstable versions)
     if(options.unstable === true) {
-      command += ' --unstable';
+      flags.push('--unstable');
     }
 
     // Use an alternate registry
     if(isString(options.registry)) {
-      command += ' --registry ' + options.registry;
+      flags.push('--registry ' + options.registry);
     }
 
     // Throw an error and exit, if you have dependencies that are not published to npm
     if(options.error404 === true) {
-      command += ' --error404';
+      flags.push('--error404');
     }
 
     // Throw an error and exit, if you have dependencies whose versions are SCM URLs
     if(options.errorSCM === true) {
-      command += ' --errorSCM';
+      flags.push('--errorSCM');
     }
 
     // Log david command
-    grunt.log.writeln('Checking: ' + command)
+    var fullCommand = command + ' ' + flags.join(' ');
+    grunt.log.writeln('Checking: ' + fullCommand + '\n');
 
-    var exec = require('child_process').exec;
-    exec(path+command, function(error, stdout, stderr) {
-      grunt.log.writeln(stdout);
-      grunt.log.writeln(stderr);
-      if (error !== null) {
-        grunt.log.error('error while checking dependencies: ' + error);
+    var davidCmd = require('child_process').spawn(path + command, flags, {
+      stdio: 'inherit'
+    });
+
+    davidCmd.on('close', function(code) {
+      if (code !== 0) {
+        grunt.log.error('Command (' + fullCommand + '): exited with code ' + code);
       }
       done();
     });
