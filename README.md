@@ -30,6 +30,12 @@ _Run this task with the `grunt david` command._
 Keep your node.js dependencies up to date.
 ### Options
 
+#### package
+Type: `String`
+Default: `undefined`
+
+Optionally specify the `package.json` path, `david` uses `./package.json` by default.
+
 #### update
 Type: `Boolean`
 Default: `false`

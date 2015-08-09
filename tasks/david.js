@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
   'use strict';
 
+  var Path = require('path');
+
   function isString(obj) {
     return Object.prototype.toString.call(obj) === '[object String]';
   }
@@ -10,9 +12,10 @@ module.exports = function(grunt) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
+      package: undefined,
       update: false,
       unstable: false,
-      registry: null,
+      registry: undefined,
       error404: false,
       errorSCM: false
     });
@@ -20,6 +23,14 @@ module.exports = function(grunt) {
     var path = __dirname + '/../node_modules/.bin/';
     var command = 'david';
     var flags = [];
+
+    // Use a specified package.json
+    if(isString(options.package)) {
+      if (!Path.isAbsolute(options.package)) {
+        options.package = Path.resolve(options.package);
+      }
+      flags.push('--package', options.package);
+    }
 
     // Update all your project dependencies to the latest stable versions
     if(options.update === true) {
