@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 
     // Use an alternate registry
     if(isString(options.registry)) {
-      flags.push('--registry ' + options.registry);
+      flags.push('--registry', options.registry);
     }
 
     // Throw an error and exit, if you have dependencies that are not published to npm
