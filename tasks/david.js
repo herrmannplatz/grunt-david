@@ -23,6 +23,12 @@ module.exports = function(grunt) {
     var path = __dirname + '/../node_modules/.bin/';
     var command = 'david';
     var flags = [];
+    
+    // Cross-platform compatibility
+    if (/^win/.test(process.platform)) {
+      command = 'david.cmd';
+    }
+    var normalizedPath = Path.normalize(path + command);    
 
     // Use a specified package.json
     if(isString(options.package)) {
@@ -61,7 +67,7 @@ module.exports = function(grunt) {
     var fullCommand = command + ' ' + flags.join(' ');
     grunt.log.writeln('Checking: ' + fullCommand + '\n');
 
-    var davidCmd = require('child_process').spawn(path + command, flags, {
+    var davidCmd = require('child_process').spawn(normalizedPath, flags, {
       stdio: 'inherit'
     });
 
