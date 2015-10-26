@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
   'use strict';
 
+  var os = require('os');
   var Path = require('path');
 
   function isString(obj) {
@@ -25,7 +26,7 @@ module.exports = function(grunt) {
     var flags = [];
     
     // Cross-platform compatibility
-    if (/^win/.test(process.platform)) {
+    if (os.platform() === 'win32') {
       command = 'david.cmd';
     }
     var normalizedPath = Path.normalize(path + command);    
