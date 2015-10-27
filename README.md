@@ -66,6 +66,12 @@ Default: `false`
 
 Turn on to abort if David finds any dependencies that are SCM URLs. Error messages are then included in the report.
 
+#### ignore
+Type: `Array|String`
+Default: `undefined`
+
+Tell david to ignore dependencies.
+
 ### Usage examples
 
 #### Update dependencies
@@ -76,7 +82,8 @@ grunt.initConfig({
   david: {
     all: {
       options: {
-        update: true
+        update: true,
+        ignore: ['grunt']
       }
     }
   }
