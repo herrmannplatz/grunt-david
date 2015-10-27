@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
   'use strict';
 
-  var os = require('os');
   var Path = require('path');
 
   function isString(obj) {
@@ -26,7 +25,7 @@ module.exports = function(grunt) {
     var flags = [];
     
     // Cross-platform compatibility
-    if (os.platform() === 'win32') {
+    if (process.platform === 'win32') {
       command = 'david.cmd';
     }
     var normalizedPath = Path.normalize(path + command);    
@@ -41,7 +40,7 @@ module.exports = function(grunt) {
 
     // Update all your project dependencies to the latest stable versions
     if(options.update === true) {
-      flags.push('--update');
+      flags.push('update');
     }
 
     // Update all your project dependencies to the latest versions (including unstable versions)
@@ -63,6 +62,13 @@ module.exports = function(grunt) {
     if(options.errorSCM === true) {
       flags.push('--errorSCM');
     }
+
+    // Ignore dependencies
+    var ignoreFlag = '--ignore=grunt-david';
+    if(options.ignore !== undefined) {
+      ignoreFlag += ',' + (Array.isArray(options.ignore) ? options.ignore.join(',') : options.ignore);
+    }
+    flags.push(ignoreFlag);
 
     // Log david command
     var fullCommand = command + ' ' + flags.join(' ');
