@@ -2,6 +2,7 @@ module.exports = function(grunt) {
   'use strict';
 
   var Path = require('path');
+  var fs = require('fs');
 
   function isString(obj) {
     return Object.prototype.toString.call(obj) === '[object String]';
@@ -21,14 +22,20 @@ module.exports = function(grunt) {
     });
 
     var path = __dirname + '/../node_modules/.bin/';
+
+    // Flat node_modules compatibility (npm v3)
+    if (!fs.existsSync(path)) {
+      path = __dirname + '/../../.bin/';
+    }
+
     var command = 'david';
     var flags = [];
-    
+
     // Cross-platform compatibility
     if (process.platform === 'win32') {
       command = 'david.cmd';
     }
-    var normalizedPath = Path.normalize(path + command);    
+    var normalizedPath = Path.normalize(path + command);
 
     // Use a specified package.json
     if(isString(options.package)) {
