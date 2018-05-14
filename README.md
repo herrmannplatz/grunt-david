@@ -2,6 +2,8 @@
 
 # grunt-david
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/herrmannplatz/grunt-david.svg)](https://greenkeeper.io/)
+
 > Watching your node.js dependencies.
 
 
